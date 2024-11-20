@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { useCart } from '../context/CartContext';
-import { products } from '../data/products';
+import { useState } from "react";
+import { useCart } from "../context/CartContext";
+import { products } from "../data/products";
 
 export default function Products() {
   const { addToCart } = useCart();
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filteredProducts = selectedCategory === 'all'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "all"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -17,8 +18,7 @@ export default function Products() {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border rounded-md px-4 py-2"
-        >
+          className="border rounded-md px-4 py-2">
           <option value="all">All Categories</option>
           <option value="cement">Cement</option>
           <option value="tools">Tools</option>
@@ -30,8 +30,7 @@ export default function Products() {
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
-          >
+            className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
               src={product.image}
               alt={product.name}
@@ -41,11 +40,10 @@ export default function Products() {
               <h3 className="text-lg font-semibold">{product.name}</h3>
               <p className="text-gray-600 mt-1">{product.description}</p>
               <div className="mt-4 flex justify-between items-center">
-                <span className="text-xl font-bold">${product.price}</span>
+                <span className="text-xl font-bold">Ksh   {product.price}</span>
                 <button
                   onClick={() => addToCart(product)}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-                >
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                   Add to Cart
                 </button>
               </div>
